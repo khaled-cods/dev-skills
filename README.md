@@ -34,7 +34,22 @@ These skills are plain Markdown. Read them, edit them, copy the parts you like.
 
 ## Install
 
-### Claude Code
+### Claude Code (one command)
+
+```bash
+claude plugin install dev-skills --marketplace khaled-cods/dev-skills
+```
+
+Or from inside a Claude Code session:
+
+```
+/plugin marketplace add khaled-cods/dev-skills
+/plugin install dev-skills@dev-skills
+```
+
+Needs Claude Code 2.1.275 or later. Update later with `claude plugin update dev-skills@dev-skills`.
+
+### Claude Code (manual copy)
 
 ```bash
 git clone https://github.com/khaled-cods/dev-skills.git
