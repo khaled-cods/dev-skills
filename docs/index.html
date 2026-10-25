@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>dev-skills — practical skills for AI coding assistants</title>
+<meta name="description" content="Eight open-source skills for code review, debugging, tests, git, refactoring, API design, security, and beginner-friendly explanations.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=IBM+Plex+Sans+Arabic:wght@400;500;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#0E1B2C;--paper:#EEF1F4;--card:#fff;--mid:#55657A;--line:#D5DBE3;--cobalt:#2F4BFF;--signal:#FFD23F;--code:#0E1B2C;--codefg:#DCE6F5;--r:14px}
+@media(prefers-color-scheme:dark){:root:not([data-theme=light]){--ink:#E8EEF7;--paper:#0B1320;--card:#111C2E;--mid:#93A3BA;--line:#22314A;--cobalt:#7C93FF;--code:#070D18;--codefg:#DCE6F5}}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;overflow-x:hidden;background:var(--paper);color:var(--ink);font:400 17px/1.65 Inter,"IBM Plex Sans Arabic",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+[dir=rtl] body,[dir=rtl]{font-family:"IBM Plex Sans Arabic",Inter,system-ui,sans-serif}
+h1,h2,h3{font-family:"Bricolage Grotesque","IBM Plex Sans Arabic",sans-serif;letter-spacing:-.02em;line-height:1.08;margin:0}
+[dir=rtl] h1,[dir=rtl] h2,[dir=rtl] h3{font-family:"IBM Plex Sans Arabic",sans-serif;letter-spacing:0;line-height:1.3}
+a{color:inherit}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+.top{display:flex;align-items:center;justify-content:space-between;padding:18px 0}
+.brand{font:700 20px "JetBrains Mono",monospace;text-decoration:none;display:flex;align-items:center;gap:10px}
+.brand i{width:14px;height:14px;background:var(--cobalt);border-radius:4px;display:inline-block;box-shadow:5px 5px 0 var(--signal)}
+.nav{display:flex;gap:10px;align-items:center}
+.btn{font:500 15px/1 inherit;border:1.5px solid var(--ink);background:transparent;color:var(--ink);padding:11px 16px;border-radius:999px;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:8px;min-height:44px}
+.btn:hover{background:var(--ink);color:var(--paper)}
+.btn.main{background:var(--cobalt);border-color:var(--cobalt);color:#fff}
+.btn.main:hover{filter:brightness(1.1);background:var(--cobalt);color:#fff}
+:focus-visible{outline:3px solid var(--cobalt);outline-offset:3px}
+.hero{display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center;padding:56px 0 72px}
+h1{font-size:clamp(38px,6vw,68px);font-weight:800}
+.lead{font-size:19px;color:var(--mid);max-width:34em;margin:22px 0 28px}
+.cta{display:flex;gap:12px;flex-wrap:wrap}
+.file{background:var(--code);color:var(--codefg);border-radius:var(--r);box-shadow:12px 12px 0 var(--signal);overflow:hidden;direction:ltr;text-align:left}
+.file .bar{display:flex;align-items:center;gap:8px;padding:11px 14px;border-bottom:1px solid #ffffff1f;font:500 13px "JetBrains Mono",monospace;color:#9fb2cf}
+.file .bar b{width:10px;height:10px;border-radius:50%;background:#ffffff33}
+.file pre{margin:0;padding:18px 18px 22px;font:400 13.5px/1.75 "JetBrains Mono",monospace;white-space:pre-wrap;min-height:330px}
+.k{color:#8aa4ff}.s{color:#ffd23f}.c{color:#6f84a6}.h{color:#fff;font-weight:500}
+.caret{display:inline-block;width:8px;height:1.1em;background:var(--signal);vertical-align:-3px;animation:b 1s steps(2) infinite}
+@keyframes b{50%{opacity:0}}
+section{padding:64px 0;border-top:1px solid var(--line)}
+h2{font-size:clamp(28px,4vw,44px);font-weight:700;margin-bottom:14px}
+.sub{color:var(--mid);max-width:38em;margin:0 0 34px}
+.ledger{border:1.5px solid var(--ink);border-radius:var(--r);overflow:hidden;background:var(--card)}
+.row{display:grid;grid-template-columns:220px 1fr 1.2fr;gap:18px;padding:18px 22px;border-bottom:1px solid var(--line);align-items:baseline;transition:background .15s}
+.row:last-child{border:0}.row:hover{background:color-mix(in srgb,var(--signal) 22%,transparent)}
+.row code{font:500 15px "JetBrains Mono",monospace;color:var(--cobalt);direction:ltr;text-align:left}
+.row .say{font-weight:500}.row .get{color:var(--mid);font-size:16px}
+.steps>*{min-width:0}.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.step{background:var(--card);border:1.5px solid var(--line);border-radius:var(--r);padding:24px}
+.step h3{font-size:21px;margin-bottom:10px}
+.step p{margin:0 0 14px;color:var(--mid);font-size:16px}
+pre.cmd{white-space:pre-wrap;overflow-wrap:anywhere;margin:0;padding-right:72px !important;background:var(--code);color:var(--codefg);border-radius:10px;padding:14px 16px;font:400 13.5px/1.7 "JetBrains Mono",monospace;overflow-x:auto;direction:ltr;text-align:left;position:relative}
+.copy{position:absolute;top:8px;right:8px;font:500 12px "JetBrains Mono",monospace;background:#ffffff1c;color:#fff;border:0;border-radius:6px;padding:6px 9px;cursor:pointer;min-height:30px}
+.rules{display:grid;grid-template-columns:repeat(2,1fr);gap:14px 40px;padding:0;margin:0;list-style:none}
+.rules li{padding:14px 0;border-top:1px solid var(--line)}.rules b{display:block;font-weight:600}.rules span{color:var(--mid);font-size:16px}
+footer{padding:36px 0 56px;border-top:1px solid var(--line);color:var(--mid);font-size:15px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+@media(max-width:860px){.hero>*,.steps>*{min-width:0}.file pre{overflow-x:auto}.hero{grid-template-columns:1fr;gap:36px;padding-top:28px}.row{grid-template-columns:1fr;gap:4px}.steps,.rules{grid-template-columns:1fr}.file{box-shadow:8px 8px 0 var(--signal)}.file pre{min-height:0}}
+@media(prefers-reduced-motion:reduce){.caret{animation:none}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+ <a class="brand" href="#"><i></i>dev-skills</a>
+ <nav class="nav">
+  <button class="btn" id="lang" type="button" aria-label="Switch language">عربي</button>
+  <a class="btn" href="https://github.com/khaled-cods/dev-skills" data-en="GitHub" data-ar="جيت هاب">GitHub</a>
+ </nav>
+</header>
+
+<main>
+<div class="hero">
+ <div>
+  <h1 data-en="Your AI assistant, working like a careful senior engineer." data-ar="مساعدك الذكي، بيشتغل زي مهندس خبير بيراجع كل حاجة.">Your AI assistant, working like a careful senior engineer.</h1>
+  <p class="lead" data-en="Eight open-source skills for review, debugging, tests, git, refactoring, APIs, security, and clear explanations. Plain Markdown you can read, edit, and trust." data-ar="ثمان مهارات مفتوحة المصدر للمراجعة وتصحيح الأخطاء والاختبارات وgit والـrefactor والـAPI والأمان والشرح الواضح. ملفات Markdown عادية تقدر تقراها وتعدل عليها.">Eight open-source skills for review, debugging, tests, git, refactoring, APIs, security, and clear explanations. Plain Markdown you can read, edit, and trust.</p>
+  <div class="cta">
+   <a class="btn main" href="#install" data-en="Install in one minute" data-ar="ثبّتها في دقيقة">Install in one minute</a>
+   <a class="btn" href="#skills" data-en="See the skills" data-ar="شوف المهارات">See the skills</a>
+  </div>
+ </div>
+ <div class="file" aria-label="Example SKILL.md file">
+  <div class="bar"><b></b><b></b><b></b><span>skills/code-review/SKILL.md</span></div>
+  <pre id="typed" aria-live="off"></pre>
+ </div>
+</div>
+
+<section id="skills">
+ <h2 data-en="Eight skills, each with one clear job" data-ar="ثمان مهارات، كل واحدة ليها شغلة واحدة واضحة">Eight skills, each with one clear job</h2>
+ <p class="sub" data-en="You ask in your own words. The right skill loads from the description, and costs nothing when it is not needed." data-ar="اطلب بكلامك العادي. المهارة المناسبة بتتحمل لوحدها من وصفها، ومبتكلفش حاجة لما متكونش محتاجها.">You ask in your own words. The right skill loads from the description, and costs nothing when it is not needed.</p>
+ <div class="ledger" role="list" id="ledger"></div>
+</section>
+
+<section id="install">
+ <h2 data-en="Install" data-ar="التثبيت">Install</h2>
+ <p class="sub" data-en="Pick the way you work." data-ar="اختار الطريقة اللي بتشتغل بيها.">Pick the way you work.</p>
+ <div class="steps">
+  <div class="step"><h3>Claude Code</h3><p data-en="Copies the skills into your personal skills folder." data-ar="بينسخ المهارات لفولدر المهارات الخاص بيك.">Copies the skills into your personal skills folder.</p>
+   <pre class="cmd"><button class="copy" type="button">copy</button>git clone https://github.com/khaled-cods/dev-skills.git
+cd dev-skills
+./scripts/install.sh</pre></div>
+  <div class="step"><h3>Claude app</h3><p data-en="Zip one skill folder and upload it." data-ar="اضغط فولدر مهارة واحدة zip وارفعه.">Zip one skill folder and upload it.</p>
+   <pre class="cmd">Settings → Capabilities → Skills
+→ Upload skill (zip)</pre></div>
+  <div class="step"><h3 data-en="Any assistant" data-ar="أي مساعد">Any assistant</h3><p data-en="They are plain Markdown. Paste a SKILL.md into your custom instructions." data-ar="هي Markdown عادي. الصق محتوى أي SKILL.md في التعليمات المخصصة.">They are plain Markdown. Paste a SKILL.md into your custom instructions.</p>
+   <pre class="cmd">skills/&lt;name&gt;/SKILL.md</pre></div>
+ </div>
+</section>
+
+<section>
+ <h2 data-en="Built to be trusted" data-ar="متعملة عشان تثق فيها">Built to be trusted</h2>
+ <ul class="rules" style="margin-top:26px">
+  <li><b data-en="Specific, not generic" data-ar="محددة مش كلام عام">Specific, not generic</b><span data-en="Every step is checkable: a failing input, a severity, a command to run." data-ar="كل خطوة تتشيك: مدخل بيفشل، درجة خطورة، أمر تشغله.">Every step is checkable: a failing input, a severity, a command to run.</span></li>
+  <li><b data-en="Safe by default" data-ar="آمنة بشكل افتراضي">Safe by default</b><span data-en="No force-push, no hidden secrets, no exploits. Real secrets get rotated." data-ar="مفيش force-push ولا أسرار مكشوفة ولا exploits. والأسرار المسربة بتتغير.">No force-push, no hidden secrets, no exploits. Real secrets get rotated.</span></li>
+  <li><b data-en="Beginner friendly" data-ar="مناسبة للمبتدئين">Beginner friendly</b><span data-en="One skill teaches in clear Arabic or English, with small examples." data-ar="مهارة بتشرح بعربي أو إنجليزي واضح وبأمثلة صغيرة.">One skill teaches in clear Arabic or English, with small examples.</span></li>
+  <li><b data-en="Validated on every push" data-ar="بتتفحص مع كل تعديل">Validated on every push</b><span data-en="A script and CI check the format of every skill." data-ar="سكريبت وCI بيفحصوا شكل كل مهارة.">A script and CI check the format of every skill.</span></li>
+ </ul>
+</section>
+</main>
+
+<footer>
+ <span data-en="MIT licensed. Use it, change it, share it." data-ar="رخصة MIT. استخدمها وعدّل عليها وشاركها.">MIT licensed. Use it, change it, share it.</span>
+ <a href="https://github.com/khaled-cods/dev-skills">github.com/khaled-cods/dev-skills</a>
+</footer>
+</div>
+
+<script>
+const S=[
+["code-review","review this PR","راجع الكود ده","Findings ranked by severity, each with a failing case and the smallest fix.","مشاكل مرتبة بالخطورة، كل واحدة بحالة تفشل فيها وأصغر إصلاح."],
+["debug-systematically","it crashes, wrong output","بيعمل crash، الناتج غلط","Reproduce, narrow down, test hypotheses, fix the cause, add a regression test.","تكرار المشكلة، تضييق البحث، اختبار الفرضيات، إصلاح السبب، واختبار يمنع رجوعها."],
+["write-tests","write tests for this","اكتبلي اختبارات","Tests for behavior, boundaries, bad input, and failures. Readable and independent.","اختبارات للسلوك والحدود والمدخلات الغلط والأعطال. مقروءة ومستقلة."],
+["git-commits-and-prs","commit this, write the PR","اعمل commit، اكتب الـPR","Small logical commits, clear messages, useful PR descriptions, safe git habits.","commits صغيرة ومنطقية، رسائل واضحة، وصف PR مفيد، وعادات git آمنة."],
+["refactor-safely","clean this up","نضف الكود ده","Behavior locked by tests first, then small verified steps.","السلوك يتثبت باختبارات الأول، وبعدين خطوات صغيرة متأكد منها."],
+["api-design","design the endpoints","صمم الـendpoints","Consistent URLs, status codes, errors, pagination, idempotency, ownership checks.","URLs وأكواد حالة وأخطاء وpagination موحدة، مع حماية ملكية البيانات."],
+["security-review","is this safe?","هل ده آمن؟","Secrets, access control, injection, auth, uploads, database rules. Ranked, with fixes.","الأسرار والصلاحيات والـinjection والدخول والرفع وقواعد قاعدة البيانات، مرتبة مع الحلول."],
+["explain-code-simply","what does this do?","ده بيعمل إيه؟","Beginner-friendly explanations with one small example, in Arabic or English.","شرح للمبتدئين بمثال صغير واحد، بالعربي أو الإنجليزي."]];
+const L=document.getElementById("ledger");
+L.innerHTML=S.map(s=>`<div class="row" role="listitem"><code>${s[0]}</code><span class="say" data-en="“${s[1]}”" data-ar="«${s[2]}»">“${s[1]}”</span><span class="get" data-en="${s[3]}" data-ar="${s[4]}">${s[3]}</span></div>`).join("");
+
+const T=`<span class="c">---</span>
+<span class="k">name:</span> code-review
+<span class="k">description:</span> <span class="s">Review code changes like a
+  senior engineer. Use when the user asks
+  to review a diff or pull request. Finds
+  real bugs first, ranks by severity,
+  skips style nitpicks.</span>
+<span class="c">---</span>
+
+<span class="h"># Code review</span>
+
+1. Understand the intent first.
+2. Trace the unhappy paths: empty,
+   null, huge, duplicated, twice.
+3. Report each finding with a
+   failing case and the smallest fix.`;
+const el=document.getElementById("typed");
+const plain=T.replace(/<[^>]+>/g,"");
+function render(n){ // reveal first n visible characters while keeping the markup
+ let out="",seen=0,i=0,open=[];
+ while(i<T.length&&seen<n){
+  if(T[i]==="<"){const j=T.indexOf(">",i);const tag=T.slice(i,j+1);out+=tag;if(tag[1]==="/")open.pop();else open.push(1);i=j+1;continue}
+  out+=T[i];seen++;i++}
+ out+=open.map(()=>"</span>").join("");
+ el.innerHTML=out+'<span class="caret"></span>'}
+if(matchMedia("(prefers-reduced-motion:reduce)").matches){el.innerHTML=T}
+else{let n=0;const t=setInterval(()=>{n+=2;render(n);if(n>=plain.length){clearInterval(t);el.innerHTML=T+'<span class="caret"></span>'}},22)}
+
+document.querySelectorAll(".copy").forEach(b=>b.addEventListener("click",()=>{
+ const txt=b.parentElement.innerText.replace(/^copy\s*/,"");
+ (navigator.clipboard?navigator.clipboard.writeText(txt):Promise.reject()).then(()=>{b.textContent="copied";setTimeout(()=>b.textContent="copy",1500)}).catch(()=>{})}));
+
+let lang=(navigator.language||"").startsWith("ar")?"ar":"en";try{lang=localStorage.getItem("lang")||lang}catch(e){}
+function setLang(l){lang=l;document.documentElement.lang=l;document.documentElement.dir=l==="ar"?"rtl":"ltr";
+ document.querySelectorAll("[data-en]").forEach(n=>{n.textContent=n.dataset[l]});
+ document.getElementById("lang").textContent=l==="ar"?"English":"عربي";
+ try{localStorage.setItem("lang",l)}catch(e){}}
+document.getElementById("lang").onclick=()=>setLang(lang==="ar"?"en":"ar");
+if(lang==="ar")setLang("ar");
+</script>
+</body>
+</html>
