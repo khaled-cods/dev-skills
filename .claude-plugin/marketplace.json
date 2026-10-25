@@ -1,0 +1,12 @@
+{
+  "name": "dev-skills",
+  "description": "Practical skills for AI coding assistants: review, debugging, tests, git, refactoring, API design, security, and beginner-friendly explanations.",
+  "owner": { "name": "Khaled" },
+  "plugins": [
+    {
+      "name": "dev-skills",
+      "source": "./",
+      "description": "Eight practical programming skills: code review, debugging, tests, git, refactoring, API design, security review, and clear explanations for beginners."
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "name": "dev-skills",
+  "version": "1.0.0",
+  "description": "Eight practical programming skills: code review, debugging, tests, git, refactoring, API design, security review, and clear explanations for beginners.",
+  "author": { "name": "Khaled" },
+  "homepage": "https://khaled-cods.github.io/dev-skills/",
+  "repository": "https://github.com/khaled-cods/dev-skills",
+  "license": "MIT",
+  "keywords": ["code-review", "debugging", "testing", "git", "security", "api-design"]
+}
