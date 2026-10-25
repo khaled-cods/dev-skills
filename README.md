@@ -39,8 +39,8 @@ These skills are plain Markdown. Read them, edit them, copy the parts you like.
 ```bash
 git clone https://github.com/khaled-cods/dev-skills.git
 cd dev-skills
-./scripts/install.sh                 # all skills, into ~/.claude/skills
-./scripts/install.sh code-review     # or only the ones you want
+bash scripts/install.sh              # all skills, into ~/.claude/skills
+bash scripts/install.sh code-review  # or only the ones you want
 ```
 
 For one project only, copy a folder into that project's `.claude/skills/` instead.
