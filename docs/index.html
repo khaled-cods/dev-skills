@@ -9,7 +9,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=IBM+Plex+Sans+Arabic:wght@400;500;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root{--ink:#0E1B2C;--paper:#EEF1F4;--card:#fff;--mid:#55657A;--line:#D5DBE3;--cobalt:#2F4BFF;--signal:#FFD23F;--code:#0E1B2C;--codefg:#DCE6F5;--r:14px}
-@media(prefers-color-scheme:dark){:root:not([data-theme=light]){--ink:#E8EEF7;--paper:#0B1320;--card:#111C2E;--mid:#93A3BA;--line:#22314A;--cobalt:#7C93FF;--code:#070D18;--codefg:#DCE6F5}}
+@media(prefers-color-scheme:dark){:root:not([data-theme=light]){--ink:#E8EEF7;--paper:#0B1320;--card:#111C2E;--mid:#93A3BA;--line:#22314A;--cobalt:#7C93FF;--code:#070D18;--codefg:#DCE6F5}.btn.main,.btn.main:hover{color:#0B1320}}
 *{box-sizing:border-box}html{scroll-behavior:smooth}
 body{margin:0;overflow-x:hidden;background:var(--paper);color:var(--ink);font:400 17px/1.65 Inter,"IBM Plex Sans Arabic",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
 [dir=rtl] body,[dir=rtl]{font-family:"IBM Plex Sans Arabic",Inter,system-ui,sans-serif}
@@ -94,10 +94,8 @@ footer{padding:36px 0 56px;border-top:1px solid var(--line);color:var(--mid);fon
  <h2 data-en="Install" data-ar="التثبيت">Install</h2>
  <p class="sub" data-en="Pick the way you work." data-ar="اختار الطريقة اللي بتشتغل بيها.">Pick the way you work.</p>
  <div class="steps">
-  <div class="step"><h3>Claude Code</h3><p data-en="Copies the skills into your personal skills folder." data-ar="بينسخ المهارات لفولدر المهارات الخاص بيك.">Copies the skills into your personal skills folder.</p>
-   <pre class="cmd"><button class="copy" type="button">copy</button>git clone https://github.com/khaled-cods/dev-skills.git
-cd dev-skills
-bash scripts/install.sh</pre></div>
+  <div class="step"><h3>Claude Code</h3><p data-en="One command installs all eight skills. Needs Claude Code 2.1.275 or later." data-ar="أمر واحد بيثبت الثمان مهارات. محتاج Claude Code نسخة 2.1.275 أو أحدث.">One command installs all eight skills. Needs Claude Code 2.1.275 or later.</p>
+   <pre class="cmd"><button class="copy" type="button">copy</button>claude plugin install dev-skills --marketplace khaled-cods/dev-skills</pre></div>
   <div class="step"><h3>Claude app</h3><p data-en="Zip one skill folder and upload it." data-ar="اضغط فولدر مهارة واحدة zip وارفعه.">Zip one skill folder and upload it.</p>
    <pre class="cmd">Settings → Capabilities → Skills
 → Upload skill (zip)</pre></div>
